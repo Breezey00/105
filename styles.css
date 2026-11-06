@@ -1,0 +1,211 @@
+
+
+/* ===== Base & layout ===== */
+body {
+ font-family:  'Times New Roman', Times, serif;
+ font-size: 24px;
+ line-height: 1.2;
+ color: #333;
+ background-color: #c0bdb9;
+}
+
+header {
+ background-color: #5f9ea0;
+ color: #f0f0f0 ;
+ padding: 21px;
+}
+
+nav a {
+ color: #2657ac;
+ margin-right: 16px; 
+}
+
+h2 { 
+ color: #353638;
+ font-size: 22px;
+}
+
+
+
+/* ===== Highlighting the Notable Parts ===== */
+
+.card {
+ background: #c7d3dd;
+ border: 2px  #000000;
+ padding: 8px;
+ line-height: 1.2;
+ flex-direction: column; 
+
+}
+
+.cards {
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+
+#profilepic { 
+ border: 4px outset #bb8d05;
+ display: block;
+ margin-left: auto;
+ margin-right: auto;
+}
+
+a { 
+ text-decoration: none; 
+ font: 15px 
+}
+
+a:hover {
+ color: #bf9000;
+}
+
+img {
+ width: 180px; 
+ border: 1px solid #ccc; 
+ padding: 2px; 
+
+}
+
+dt, dd{
+ font-family: Georgia, serif; 
+ color: rgb(16, 31, 51);
+ margin-top: 19px;
+}
+
+
+/* ===== Form, Tables and Anything that is should look like a dashboard ===== */
+label {
+ display: block; 
+ margin-top: 10px; 
+}
+
+
+input, select, textarea {
+ width: 100%; 
+ padding: 8px; 
+
+}
+
+button {
+ background: #1f3864;
+ color: #fff;
+ border: none;
+ padding: 10px 16px;
+}
+
+table {
+ border-collapse: collapse;
+ width: 100%; }
+
+th, td {
+ border: 1px solid #eaf0f8;
+ padding: 8px; 
+}
+
+th {
+ background: #eaf0f8; 
+}
+
+
+
+
+main .field label { 
+ font-style: italic ;
+}
+ 
+/* ===== Flexbox and Media Queries===== */
+
+
+.navbar {
+ border: 5px outset #152133;
+ display: flex;
+ justify-content: flex-start;
+ align-items: center;
+ padding: 15px 20px;
+}
+
+@media (min-width: 768px) {
+
+    body { 
+         font-size: 17px; 
+    }
+
+    input, select, textarea, button {
+         width: 100%;
+         padding: 12px;
+         font-size: 16px;
+    }
+
+    .cards {
+          /* ===== Projects section (Exercise 5) ===== */
+          /* Because they are the interface that can show more at once.
+           It's more effecient and comfortable that way*/
+         flex-wrap: wrap;
+         flex-direction: row;  
+            
+    }
+
+    .card {
+               /*first value is about hw much it can grow, 
+                 second value is how much it is allowed to shrink
+                 and third value is the base/default size   */
+        flex:  1 1 220px;
+    }
+   
+    .table-wrap { 
+
+          overflow-x: auto; 
+    }
+
+     .field {
+          display: flex;
+          align-items: center;
+          justify-content: space-between; 
+          width: 100%;                     
+          padding: 12px;
+          box-sizing: border-box;
+          border-bottom: 1px solid #eee;  
+          cursor: pointer;
+     }
+}
+
+ 
+
+
+@media (max-width: 480px) {
+    body { 
+         font-size: 15px; 
+    }
+
+    .navbar { 
+        flex-direction: column;
+        gap: 8px;   
+    }
+
+    .table-wrap { overflow-x: auto; }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between; 
+      width: 100%;                     
+      padding: 12px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #eee;  
+      cursor: pointer;
+}
+
+}
+
+/* ===== Contact form messages (Exercise 6) ===== */
+/* This styles the classes tagged "form-errors" red and  the ids tagged with result, the thank you result green, depending on what appears */
+.form-errors {
+     color: #b00020;
+}
+
+#result {
+     color: #1e7b34;
+     font-weight: bold;
+}
