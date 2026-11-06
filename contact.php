@@ -12,6 +12,23 @@
         $email = trim($_POST["email"] ?? "");
         $reason = trim($_POST["reason"] ?? "");
         $message = trim($_POST["message"] ?? "");
+
+        /* 1st, that fullname isn't empty;2nd, that an email is in the right format;
+        3rd, message is at least 10 characters; 4th, only without errors can the sent be set to true */
+        if ($fullname === "") {
+            $errors[] = "Full name is required.";
+        }
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = "A valid email address is required.";
+        }
+        if (strlen($message) < 10) {
+            $errors[] = "Message must be at least 10 characters.";
+        }
+        // if the errors array is empty
+        if (empty($errors)) {
+            $sent = true;
+        }
+
     }
 ?>
 
@@ -33,7 +50,7 @@
             /* HTML and PHP is read by the compiler top to bottom and left to right. 
                 That means that if siteTitle is to have a value on being called you have to set it up before 
                 the php is implemented */
-            $siteTitle = "eh";
+            $siteTitle = "Coenn Johan Caapalihan";
             // include calls the other file/code-set to be read by the compiler in a certain part of the code
             include "header.php";
         ?>
@@ -43,17 +60,38 @@
             <!-- an id is given so that it can be singled out from other files like js and css and be subject to their modifications
                   no validate disables the auto-validate set on forms by default by the browser -->
             <!-- to the contact.php page (and associated js file/s, via first being stored in the $_POST superglobal array -->
+            <!-- the output shown depends on if the value of $sent is true or false-->
+            <?php if ($sent) { ?>
+            <div id="result">
+            <p>Thank you, <?php echo htmlspecialchars($fullname); ?>!</p>
+            <p>We will reply to <?php echo htmlspecialchars($email); ?>.</p>
+            </div>
+            <?php } else { ?>
+
             <form id="contactForm" method="post" action="contact.php" novalidate>
                 
                 <fieldset >
-                    <legend>Send a Message</legend>  
-                    <!--did not put breaks, they don't look better-->
+                    <legend>Send a Message</legend>
+
+                    <?php if (!empty($errors)) { ?>
+                    
+                        <!-- The list appears when there are errors(when $errors array is not empty)-->
+                        <ul class="form-errors">
+                            <?php foreach ($errors as $e) { ?>
+                            <li><?php echo $e; ?></li>
+                            <?php } ?>
+                        </ul>
+                    <?php } ?>
 
                     <label for="fullname">Full Name</label>
-                        <input type="text" id="fullname" name="fullname" required>
+                        <!-- to simply put into html characters the contents of every $property -->
+                        <input type="text" id="fullname" name="fullname" required
+                        value="<?php echo htmlspecialchars($fullname); ?>">
+
 
                     <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" required
+                        value="<?php echo htmlspecialchars($email); ?>">
                         
                     <label for="reason">Reason for Contact</label>
                         <select id="reason" name="reason">
@@ -76,7 +114,8 @@
                         Your Message
                     </label>
 
-                    <textarea id="message" name="message" rows="5" required>
+                    <textarea id="message" name="message" rows="5" required><?php echo
+                    htmlspecialchars($message); ?></textarea>
 
                     </textarea>
 
@@ -90,6 +129,8 @@
                     <button type="submit" id = "butt" disabled>Send Message</button>
                 </fieldset>
             </form>
+            <?php } ?>
+
 
             <div id="result"></div>
 
@@ -131,7 +172,10 @@
 
         <?php include "footer.php"; ?>
 
-        <script src="form.js"></script>
+        <!-- so there is actually something valid in the inputs before being submitted as a and into a request-->
+        <?php if (!$sent) { ?>
+       <script src="form.js"></script>
+        <?php } ?>
 </body>
 
 </html>

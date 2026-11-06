@@ -36,7 +36,7 @@ form.addEventListener("submit", function (e) {
         errors.push("Message must be at least 10 characters.");
     }
 
-    // to only not submit the form only everytime the function checks(and finds) an error
+    // to only not submit the form only everytime the function checks(and finds) no error
     if (errors.length > 0) {
         e.preventDefault();
         
