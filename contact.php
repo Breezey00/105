@@ -17,7 +17,7 @@
             /* HTML and PHP is read by the compiler top to bottom and left to right. 
                 That means that if siteTitle is to have a value on being called you have to set it up before 
                 the php is implemented */
-            $siteTitle = "Coenn Johan B Capalihan";
+            $siteTitle = "eh";
             // include calls the other file/code-set to be read by the compiler in a certain part of the code
             include "header.php";
         ?>
