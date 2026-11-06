@@ -37,7 +37,7 @@ form.addEventListener("submit", function (e) {
         errors.push("Message must be at least 10 characters.");
     }
 
-    // Because everything that happens within this function (errors being put on a list and returned) doesn't get sent the default way
+    // to only not submit the form only everytime the function checks(and finds) an error
     if (errors.length > 0) {
         e.preventDefault();
         
@@ -48,9 +48,11 @@ form.addEventListener("submit", function (e) {
         return;
     }
 
-    // the form returns a blank line as the only String in the errorList variable 
+    // the form returns a blank line as the only String to be posted in the formErrors list in contact.php
     errorList.innerHTML = "";
     });
+
+
 
     // ===== Live character count =====
     const charCount = document.getElementById("charCount");
