@@ -1,5 +1,5 @@
 
- 
+  
 // ===== Page elements =====
 const form = document.getElementById("contactForm");
 const nameInput = document.getElementById("fullname");
