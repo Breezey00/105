@@ -51,6 +51,9 @@ form.addEventListener("submit", function (e) {
     errorList.innerHTML = "";
     });
 
+     result.textContent = "Thanks, " + fullname +
+    "! We will reply to " + email + ".";
+   
 
 
     // ===== Live character count =====
