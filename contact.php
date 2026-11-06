@@ -1,3 +1,19 @@
+<?php
+    // ===== Form processing =====
+    // so they return blank when they have none inputted in them yet, so the page can load initially
+    $fullname = $email = $reason = $message = "";
+    $errors = [];
+    $sent = false;
+
+    // whenever the form is submitted that is a method $_POST
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        // the form's post 
+        $fullname = trim($_POST["fullname"] ?? "");
+        $email = trim($_POST["email"] ?? "");
+        $reason = trim($_POST["reason"] ?? "");
+        $message = trim($_POST["message"] ?? "");
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +42,8 @@
 
             <!-- an id is given so that it can be singled out from other files like js and css and be subject to their modifications
                   no validate disables the auto-validate set on forms by default by the browser -->
-            <form id="contactForm" novalidate>
+            <!-- to the contact.php page (and associated js file/s, via first being stored in the $_POST superglobal array -->
+            <form id="contactForm" method="post" action="contact.php" novalidate>
                 
                 <fieldset >
                     <legend>Send a Message</legend>  
