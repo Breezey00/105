@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact - Coenn Johan Capalihan</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>`
+
+    <body>
+
+        <main>
+
+        <?php
+
+            /* HTML and PHP is read by the compiler top to bottom and left to right. 
+                That means that if siteTitle is to have a value on being called you have to set it up before 
+                the php is implemented */
+            $siteTitle = "Coenn Johan B Capalihan";
+            // include calls the other file/code-set to be read by the compiler in a certain part of the code
+            include "header.php";
+        ?>
+
+            <h2>Contact Me</h2>
+
+            <!-- an id is given so that it can be singled out from other files like js and css and be subject to their modifications
+                  no validate disables the auto-validate set on forms by default by the browser -->
+            <form id="contactForm" novalidate>
+                
+                <fieldset >
+                    <legend>Send a Message</legend>  
+                    <!--did not put breaks, they don't look better-->
+
+                    <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" name="fullname" required>
+
+                    <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                        
+                    <label for="reason">Reason for Contact</label>
+                        <select id="reason" name="reason">
+                            <option value="general">General Question</option>
+                            <option value="project">Project Inquiry</option>
+                            <option value="other">Other</option>
+                        </select>
+
+                    <p>Preferred Reply:</p>
+                    <section class = "field">
+                        <label><input type="radio" name="reply" value="email" checked> Email</label>
+                        <label><input type="radio" name="reply" value="phone"> Phone</label>
+                        <label>
+                            <input type="checkbox" name= "consent" id = "allow" required>
+                            I agree to be contacted.                
+                        </label>
+                    </section>
+
+                    <label for="message">
+                        Your Message
+                    </label>
+
+                    <textarea id="message" name="message" rows="5" required>
+
+                    </textarea>
+
+                    <p id="charCount">
+                        0 characters
+                    </p>
+
+                    <!--Errors will show on this list just above the button (so the user can see what's up) -->
+                    <ul id="formErrors" class="form-errors"></ul>
+
+                    <button type="submit" id = "butt" disabled>Send Message</button>
+                </fieldset>
+            </form>
+
+            <div id="result"></div>
+
+            <section class = "card table-wrap"> 
+                <h2>When You Can Reach Me</h2>
+                <table>
+                    <caption>My Weekly Availability</caption>
+                    <tr>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Mode</th>
+                    </tr>
+                    <tr>
+                        <td>Monday</td>
+                        <td>9:00-11:00 AM</td>
+                        <td>Online</td>
+                    </tr>
+                    <tr>
+                        <td>Wednesday</td>
+                        <td>1:00-3:00 PM</td>
+                        <td>In person</td>
+                    </tr>
+                    <tr>
+                        <td>Friday</td>
+                        <td>10:00-12:00 NN</td>
+                        <td>Online</td>
+                    </tr>
+                    <tr>
+                        <td>Saturday</td>
+                        <td>By appointment</td>
+                        <td>Online</td>
+                    </tr>
+                </table>
+
+
+
+            </section>
+        </main>
+
+        <?php include "footer.php"; ?>
+
+        <script src="form.js"></script>
+</body>
+
+</html>
