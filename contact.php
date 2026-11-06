@@ -70,7 +70,7 @@
         <?php if ($sent) { ?>
             <div id="result">
             <p>Thank you, <?php echo htmlspecialchars($fullname); ?>!</p>
-            //added aan extension to the thaank you message to include message reason
+            <!--added an extension to the thank you message to include message reason -->
             <p>We will reply to <?php echo htmlspecialchars($email); ?> with your concern, <?php echo htmlspecialchars($reason); ?>.</p>
             </div>
         <?php } else { ?>
