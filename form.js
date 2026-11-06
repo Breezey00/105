@@ -5,7 +5,6 @@ const form = document.getElementById("contactForm");
 const nameInput = document.getElementById("fullname");
 const emailInput = document.getElementById("email");
 const messageInput = document.getElementById("message");
-const result = document.getElementById("result")
 const errorList = document.getElementById("formErrors");
 const checkbox = document.getElementById("allow");
 const button = document.getElementById("butt");
