@@ -12,6 +12,7 @@
         $email = trim($_POST["email"] ?? "");
         $reason = trim($_POST["reason"] ?? "");
         $message = trim($_POST["message"] ?? "");
+        
 
         /* 1st, that fullname isn't empty;2nd, that an email is in the right format;
         3rd, message is at least 10 characters; 4th, only without errors can the sent be set to true */
@@ -24,12 +25,17 @@
         if (strlen($message) < 10) {
             $errors[] = "Message must be at least 10 characters.";
         }
+        if (empty($_POST["consent"])) {
+         $errors[] = "You must agree to be contacted.";
+        }
         // if the errors array is empty
         if (empty($errors)) {
             $sent = true;
         }
-
-    }
+       
+}
+        
+    
 ?>
 
 <!DOCTYPE html>
@@ -55,18 +61,19 @@
             include "header.php";
         ?>
 
-            <h2>Contact Me</h2>
+        <h2>Contact Me</h2>
 
             <!-- an id is given so that it can be singled out from other files like js and css and be subject to their modifications
                   no validate disables the auto-validate set on forms by default by the browser -->
             <!-- to the contact.php page (and associated js file/s, via first being stored in the $_POST superglobal array -->
             <!-- the output shown depends on if the value of $sent is true or false-->
-            <?php if ($sent) { ?>
+        <?php if ($sent) { ?>
             <div id="result">
             <p>Thank you, <?php echo htmlspecialchars($fullname); ?>!</p>
-            <p>We will reply to <?php echo htmlspecialchars($email); ?>.</p>
+            //added aan extension to the thaank you message to include message reason
+            <p>We will reply to <?php echo htmlspecialchars($email); ?> with your concern, <?php echo htmlspecialchars($reason); ?>.</p>
             </div>
-            <?php } else { ?>
+        <?php } else { ?>
 
             <form id="contactForm" method="post" action="contact.php" novalidate>
                 
@@ -95,9 +102,9 @@
                         
                     <label for="reason">Reason for Contact</label>
                         <select id="reason" name="reason">
-                            <option value="general">General Question</option>
-                            <option value="project">Project Inquiry</option>
-                            <option value="other">Other</option>
+                            <option value="General Question">General Question</option>
+                            <option value="Project Inquiry">Project Inquiry</option>
+                            <option value="Other Concern">Other</option>
                         </select>
 
                     <p>Preferred Reply:</p>
@@ -126,7 +133,7 @@
                     <!--Errors will show on this list just above the button (so the user can see what's up) -->
                     <ul id="formErrors" class="form-errors"></ul>
 
-                    <button type="submit" id = "butt" disabled>Send Message</button>
+                    <button type="submit" id = "butt" >Send Message</button>
                 </fieldset>
             </form>
             <?php } ?>
@@ -174,7 +181,7 @@
 
         <!-- so there is actually something valid in the inputs before being submitted as a and into a request-->
         <?php if (!$sent) { ?>
-       <script src="form.js"></script>
+       <!--<script src="form.js"></script>-->
         <?php } ?>
 </body>
 
