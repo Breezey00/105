@@ -49,12 +49,10 @@ form.addEventListener("submit", function (e) {
 
     // the form returns a blank line as the only String to be posted in the formErrors list in contact.php
     errorList.innerHTML = "";
-    });
 
-     result.textContent = "Thanks, " + fullname +
+       result.textContent = "Thanks, " + fullname +
     "! We will reply to " + email + ".";
-   
-
+    });
 
     // ===== Live character count =====
     const charCount = document.getElementById("charCount");
