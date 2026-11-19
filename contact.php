@@ -1,4 +1,8 @@
 <?php
+    /* db.php includes and runs the code inside db.php. In this case
+     the code to connect to the localhost database and the portfolio.db database */
+    include "db.php";
+
     // ===== Form processing =====
     // so they return blank when they have none inputted in them yet, so the page can load initially
     $fullname = $email = $reason = $message = "";
@@ -29,8 +33,21 @@
          $errors[] = "You must agree to be contacted.";
         }
         // if the errors array is empty
+       // SQL uses the blanks as place holders for when there are still no entries assigned. Other wise it would see it as incorrect syntax.
         if (empty($errors)) {
-            $sent = true;
+            $stmt = $conn->prepare(
+            "INSERT INTO messages (fullname, email, reason, message)
+            VALUES (?, ?, ?, ?)");
+
+            // for every "s" means a "String" data type to each value to be inserted into the databases' fields
+            $stmt->bind_param("ssss", $fullname, $email, $reason, $message);
+
+            // When the query is successfully committed into the sql database
+        if ($stmt->execute()) {
+         $sent = true;
+        } else {
+            $errors[] = "Your message could not be saved. Please try again.";
+        }
         }
        
 }
