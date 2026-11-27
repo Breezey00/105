@@ -2,6 +2,17 @@
 // so that the session header could actually be sent for the page http recognizes a session
 session_start();
 
+ // the two checks allow only users with an account or "user_id" and
+    //  whether or not the user is an admin or not; this blocks anyone trying to access the pages via the address bar and redirects them when they try to brute access the pages
+    if (!isset($_SESSION["user_id"])) {
+        header("Location: login.php");
+        exit;
+    }
+
+    if ($_SESSION["role"] !== "admin") {
+        die("Access denied. This page is for the admin only.");
+    }
+
     include "db.php";
     $siteTitle = "Coenn Johan Capalihan";
     // ===== Load or save one message =====
