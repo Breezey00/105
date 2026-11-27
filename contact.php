@@ -1,4 +1,7 @@
 <?php
+// so that the session header could actually be sent for the page http recognizes a session
+session_start();
+
     /* db.php includes and runs the code inside db.php. In this case
      the code to connect to the localhost database and the portfolio.db database */
     include "db.php";

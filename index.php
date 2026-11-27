@@ -1,4 +1,7 @@
-
+<?php 
+// so that the session header could actually be sent for the page http recognizes a session
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">

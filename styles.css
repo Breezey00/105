@@ -209,3 +209,22 @@ main .field label {
      color: #1e7b34;
      font-weight: bold;
 }
+
+/* ===== Message actions (Exercise 10) ===== */
+/* this element styles the delete button red as convention that this does something really critical */
+.delete-btn {
+width: auto;
+margin-top: 6px;
+padding: 6px 12px;
+background: #b00020;
+}
+
+/* ===== Profile photo (Exercise 11) ===== */
+/* the rules turn the photo circle by equalizing all of its sides and fits it neatly within that square area while border radius gives its angles curves. 
+And since it's equal on all sides it becomes a cricle*/
+.profile-photo {
+width: 150px;
+height: 150px;
+object-fit: cover;
+border-radius: 50%;
+}

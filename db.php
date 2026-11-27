@@ -1,9 +1,10 @@
 <?php
 // ===== Database connection =====
 mysqli_report(MYSQLI_REPORT_OFF);
-// EXPLAIN: What are the four values mysqli needs?
+// the 4 values mysqli needs is the host, username, password and database name
 $conn = new mysqli("localhost", "root", "", "portfolio_db");
-// EXPLAIN: What happens if the connection fails?
+
+// it shows a page that says "Connection Failed"
 if ($conn->connect_error) {
 die("Connection failed: " . $conn->connect_error);
 }

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2026 at 05:04 AM
+-- Generation Time: Nov 27, 2026 at 01:24 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,7 +42,30 @@ CREATE TABLE `messages` (
 
 INSERT INTO `messages` (`id`, `fullname`, `email`, `reason`, `message`, `created_at`) VALUES
 (1, 'Aristotle', 'aristotle@gmail.com', 'General Question', 'does this truly work?', '2026-11-10 03:45:45'),
-(2, 'Aristotle', 'aristotle@gmail.com', 'General Question', 'does this truly work?', '2026-11-10 03:54:01');
+(2, 'Socrates', 'socratesactually@gmail.com', 'General Inquiry', 'ehh?really?it works now?  it does????', '2026-11-10 03:54:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `fullname` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `role` varchar(10) DEFAULT 'user',
+  `photo` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `fullname`, `email`, `password`, `role`, `photo`, `created_at`) VALUES
+(1, 'Coenn Johan Capalihan', 'c.coennjohan@gmail.com', '$2y$10$rqP2j.pWbhhA2TfBM3nCHe7yQ646U94W4OwEKpe5PTHWV3abPHrkm', 'admin', 'user_6b0975c825b32.png', '2026-11-27 12:21:28');
 
 --
 -- Indexes for dumped tables
@@ -55,6 +78,13 @@ ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -62,7 +92,13 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
